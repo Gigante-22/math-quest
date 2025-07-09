@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quest - Aventura Matemática</title>
+  <style>
+    :root {
+      --primary-color: #4a6fa5;
+      --secondary-color: #ff914d;
+      --accent-color: #ff5722;
+      --dark-color: #333;
+      --light-color: #f8f9fa;
+      --success-color: #28a745;
+      --danger-color: #dc3545;
+    }
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      margin: 0; padding: 0;
+      background-color: #e9ecef;
+      background-image: url('https://placehold.co/1920x1080');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: var(--dark-color);
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; }
+    h1 { color: var(--primary-color); margin: 0; font-size: 2.5rem; }
+    .difficulty-selector { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+    .difficulty-btn { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    .difficulty-btn:hover, .difficulty-btn.active { transform: translateY(-2px); opacity: .9; }
+    .easy { background-color: var(--success-color); color: white; }
+    .medium { background-color: var(--secondary-color); color: white; }
+    .hard { background-color: var(--danger-color); color: white; }
+    .character-level { text-align: center; margin-bottom: 10px; font-weight: bold; }
+    .character { display: flex; justify-content: center; margin-bottom: 20px; }
+    .character img { max-width: 150px; transition: all 0.3s; }
+    .game-area { text-align: center; }
+    .question-container { background: var(--light-color); padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .question { font-size: 1.5rem; margin-bottom: 20px; }
+    .options { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .option-btn { padding: 12px; border:2px solid var(--primary-color); border-radius:5px; background:white; cursor:pointer; font-size:1rem; transition:0.2s; }
+    .option-btn:hover { background: var(--primary-color); color:white; }
+    .timer, .score-display { font-size:1.2rem; margin-bottom:20px; }
+    .progress-container { width:100%; height:10px; background:#e0e0e0; border-radius:5px; margin-bottom:20px; overflow:hidden;}
+    .progress-bar { height:100%; background:var(--primary-color); width:0%; }
+    .feedback { margin-top:15px; padding:10px; border-radius:5px; font-weight:bold; display:none; }
+    .correct { background:rgba(40,167,69,0.2); color:var(--success-color); }
+    .incorrect { background:rgba(220,53,69,0.2); color:var(--danger-color); }
+    .controls { margin-top:20px; display:flex; justify-content:center; gap:15px; }
+    .controls button { padding:10px 20px; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }
+    .start-btn { background:var(--primary-color); color:white;}
+    .next-btn { background:var(--secondary-color); color:white; display:none;}
+    .power-ups { display:flex; justify-content:center; gap:15px; margin-top:20px;}
+    .power-up { padding:8px 15px; background:var(--accent-color); color:white; border-radius:5px; cursor:pointer; font-weight:bold; font-size:0.9rem; display:flex; align-items:center; gap:5px;}
+    .xp-container { margin:20px 0; }
+    footer { text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid #ddd; font-size:0.9rem; color:#666; }
+    @media(max-width:600px){ .options { grid-template-columns:1fr; } h1{font-size:2rem;} .question{font-size:1.2rem;} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Math Quest</h1>
+      <p>Desafie suas habilidades matemáticas nessa aventura!</p>
+    </header>
+
+    <div class="difficulty-selector">
+      <button id="btn-easy" class="difficulty-btn easy" onclick="setDifficulty('easy')">Fácil</button>
+      <button id="btn-medium" class="difficulty-btn medium active" onclick="setDifficulty('medium')">Médio</button>
+      <button id="btn-hard" class="difficulty-btn hard" onclick="setDifficulty('hard')">Difícil</button>
+    </div>
+
+    <div class="character-level">
+      Nível: <span id="level">1</span>
+    </div>
+    <div class="character">
+      <img id="character-img" src="https://placehold.co/150?text=🧑‍🏫" alt="Personagem jogador">
+    </div>
+
+    <div class="game-area">
+      <div id="intro">
+        <h2>Bem-vindo ao Math Quest!</h2>
+        <p>Escolha a dificuldade e clique em "Começar" para iniciar sua jornada matemática.</p>
+        <p>🏆 Recorde: <span id="high-score">0</span></p>
+      </div>
+
+      <div id="game" style="display:none;">
+        <div class="progress-container"><div id="progress-bar" class="progress-bar"></div></div>
+        <div class="score-display">Pontuação: <span id="score">0</span> | Pergunta: <span id="question-number">0</span>/10</div>
+        <div class="timer">Tempo: <span id="time">30</span>s</div>
+        <div class="xp-container">
+          XP: <div class="progress-container"><div id="xp-bar" class="progress-bar" style="background-color:var(--success-color)"></div></div>
+        </div>
+        <div class="question-container">
+          <div id="question" class="question"></div>
+          <div id="options" class="options"></div>
+          <div id="feedback" class="feedback"></div>
+        </div>
+        <div class="power-ups">
+          <div class="power-up" onclick="usePowerUp('time')">⏱️ +10s (<span id="time-count">3</span>)</div>
+          <div class="power-up" onclick="usePowerUp('hint')">💡 Dica (<span id="hint-count">3</span>)</div>
+          <div class="power-up" onclick="usePowerUp('skip')">🔄 Pular (<span id="skip-count">3</span>)</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="start-btn" class="start-btn" onclick="startGame()">Começar</button>
+        <button id="next-btn" class="next-btn" onclick="nextQuestion()">Próxima</button>
+      </div>
+    </div>
+
+    <footer>Desenvolvido para o trabalho de fundamentos da matematica!</footer>
+  </div>
+
+  <script>
+    let difficulty = 'medium';
+    let score = 0, currentQuestion = 0, totalQuestions = 10;
+    let timer, timeLeft = 30;
+    let correctAnswer, gameStarted = false, level = 1, xp = 0, xpToNextLevel = 100;
+    const powerUps = { time:3, hint:3, skip:3 };
+
+    const questionTemplates = {
+      easy: [{ template:"Quanto é {a} + {b}?", answer:(a,b)=>a+b }, { template:"Quanto é {a} - {b}?", answer:(a,b)=>a-b }, { template:"Se um pacote tem {a} balas e {b} são retiradas, quantas restam?", answer:(a,b)=>a-b }],
+      medium: [{ template:"Quanto é {a} × {b}?", answer:(a,b)=>a*b }, { template:"Qual é a raiz quadrada de {a_squared}?", answer:(a)=>a, param:()=>({a_squared:Math.pow((a=Math.floor(Math.random()*10)+1),2),a}) }],
+      hard: [{ template:"Qual é o fatorial de {a}?", answer:(a)=>{let r=1;for(let i=2;i<=a;i++) r*=i;return r;}, param:()=>({a:Math.floor(Math.random()*4)+3}) }, { template:"Quanto é {a}³?", answer:(a)=>a*a*a }]
+    };
+
+    function setDifficulty(levelSel) {
+      difficulty = levelSel;
+      document.querySelectorAll('.difficulty-btn').forEach(btn=>btn.classList.remove('active'));
+      document.getElementById(`btn-${levelSel}`).classList.add('active');
+      const imgs = { easy:'https://placehold.co/150?text=🧒', medium:'https://placehold.co/150?text=🧑‍🏫', hard:'https://placehold.co/150?text=🧠' };
+      document.getElementById('character-img').src = imgs[levelSel];
+    }
+
+    function startGame() {
+      document.getElementById('intro').style.display='none';
+      document.getElementById('game').style.display='block';
+      document.getElementById('start-btn').style.display='none';
+      document.getElementById('next-btn').style.display='none';
+
+      score=0; currentQuestion=0; level=1; xp=0; xpToNextLevel=100;
+      powerUps.time=powerUps.hint=powerUps.skip=3;
+      updateCounters();
+      updateHighScore();
+
+      updateStats(); generateQuestion(); startTimer();
+    }
+
+    function generateQuestion() {
+      currentQuestion++;
+      if (currentQuestion>totalQuestions) return endGame();
+      document.getElementById('question-number').textContent=currentQuestion;
+      document.getElementById('progress-bar').style.width=`${(currentQuestion/totalQuestions)*100}%`;
+
+      const templates=questionTemplates[difficulty];
+      const tmpl=templates[Math.floor(Math.random()*templates.length)];
+      let params={a:Math.floor(Math.random()*10)+1, b:Math.floor(Math.random()*10)+1};
+      if(tmpl.param) params = {...params, ...tmpl.param()};
+
+      let q=tmpl.template;
+      Object.keys(params).forEach(k=>{q=q.replace(`{${k}}`, params[k]);});
+      correctAnswer = tmpl.answer(...Object.values(params));
+      document.getElementById('question').textContent=q;
+
+      const optsEl=document.getElementById('options');
+      optsEl.innerHTML='';
+      let options=[correctAnswer];
+      while(options.length<4){
+        let wrong = correctAnswer + Math.floor(Math.random()*5+1)*(Math.random()>0.5?1:-1);
+        if(!options.includes(wrong) && wrong>0) options.push(wrong);
+      }
+      shuffleArray(options).forEach(opt=>{
+        const btn=document.createElement('button');
+        btn.className='option-btn';
+        btn.textContent = opt;
+        btn.onclick = ()=>checkAnswer(opt);
+        optsEl.appendChild(btn);
+      });
+
+      timeLeft=30;
+      document.getElementById('time').textContent=timeLeft;
+      document.getElementById('feedback').style.display='none';
+      updateXPBar();
+    }
+
+    function checkAnswer(answer) {
+      clearInterval(timer);
+      const fb = document.getElementById('feedback');
+      let correct = parseFloat(answer)===parseFloat(correctAnswer);
+      if(correct) {
+        fb.className='feedback correct';
+        fb.textContent='✅ Correto!';
+        const pts = (difficulty==='easy'?10:difficulty==='medium'?20:30) + Math.floor(timeLeft/3);
+        score+=pts; xp+=pts;
+        if(xp>=xpToNextLevel){
+          level++; xp-=xpToNextLevel; xpToNextLevel+=50;
+        }
+      } else {
+        fb.className='feedback incorrect';
+        fb.textContent=`❌ Errado! Resposta: ${correctAnswer}`;
+      }
+      fb.style.display='block';
+      document.querySelectorAll('.option-btn').forEach(btn=>btn.onclick=null);
+      document.getElementById('next-btn').style.display='inline-block';
+      updateStats();
+    }
+
+    function nextQuestion() {
+      document.getElementById('next-btn').style.display='none';
+      generateQuestion();
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(()=>{
+        timeLeft--;
+        document.getElementById('time').textContent=timeLeft;
+        if(timeLeft<=0){
+          clearInterval(timer);
+          const fb = document.getElementById('feedback');
+          fb.className='feedback incorrect';
+          fb.textContent='⏰ Tempo esgotado!';
+          fb.style.display='block';
+          document.getElementById('next-btn').style.display='inline-block';
+        }
+      },1000);
+    }
+
+    function updateStats() {
+      document.getElementById('score').textContent=score;
+      document.getElementById('level').textContent=level;
+      updateCounters();
+      updateXPBar();
+    }
+
+    function endGame() {
+      clearInterval(timer);
+      const fb=document.getElementById('feedback');
+      fb.className='feedback';
+      fb.textContent=`🎉 Fim do jogo! Pontuação: ${score} | Nível: ${level}`;
+      fb.style.display='block';
+      document.getElementById('question').textContent='Obrigado por jogar o Math Quest!';
+      document.getElementById('options').innerHTML='';
+      document.getElementById('next-btn').style.display='none';
+      document.getElementById('start-btn').textContent='Jogar Novamente';
+      document.getElementById('start-btn').style.display='inline-block';
+      saveHighScore();
+    }
+
+    function usePowerUp(type) {
+      if(powerUps[type]<=0) return alert('Sem usos restantes!');
+      powerUps[type]--; updateCounters();
+      if(type==='time'){
+        timeLeft+=10; document.getElementById('time').textContent=timeLeft;
+      } else if(type==='hint'){
+        const btns=document.querySelectorAll('.option-btn');
+        for(const btn of btns){
+          if(parseFloat(btn.textContent)!==parseFloat(correctAnswer)){
+            btn.style.opacity='0.3';
+            btn.onclick=null;
+            break;
+          }
+        }
+      } else if(type==='skip'){
+        clearInterval(timer);
+        const fb=document.getElementById('feedback');
+        fb.className='feedback';
+        fb.textContent='↩️ Pergunta pulada!';
+        fb.style.display='block';
+        document.getElementById('next-btn').style.display='inline-block';
+      }
+    }
+
+    function updateCounters() {
+      document.getElementById('time-count').textContent=powerUps.time;
+      document.getElementById('hint-count').textContent=powerUps.hint;
+      document.getElementById('skip-count').textContent=powerUps.skip;
+    }
+
+    function updateXPBar() {
+      document.getElementById('xp-bar').style.width = `${(xp/xpToNextLevel)*100}%`;
+    }
+
+    function shuffleArray(arr) {
+      for(let i=arr.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+      }
+      return arr;
+    }
+
+    function getHighScore() {
+      return parseInt(localStorage.getItem('mathQuestHighScore'))||0;
+    }
+    function saveHighScore() {
+      const hs=getHighScore();
+      if(score>hs) localStorage.setItem('mathQuestHighScore', score);
+      updateHighScore();
+    }
+    function updateHighScore() {
+      document.getElementById('high-score').textContent = getHighScore();
+    }
+
+    window.onload = function(){
+      setDifficulty('medium');
+      updateHighScore();
+    };
+  </script>
+</body>
+</html>
