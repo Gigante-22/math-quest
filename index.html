@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,13 +18,13 @@
       --info-color: #17a2b8;
     }
 
-    * { 
-      box-sizing: border-box; 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      margin: 0; 
+      margin: 0;
       padding: 0;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
@@ -36,47 +37,52 @@
       max-width: 900px;
       margin: 30px auto;
       padding: 20px;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 15px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(10px);
       position: relative;
     }
 
-    header { 
-      text-align: center; 
-      margin-bottom: 30px; 
-      border-bottom: 3px solid var(--primary-color); 
-      padding-bottom: 20px; 
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 20px;
     }
 
-    h1 { 
-      color: var(--primary-color); 
-      margin: 0; 
-      font-size: 2.5rem; 
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    h1 {
+      color: var(--primary-color);
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       animation: pulse 2s ease-in-out infinite alternate;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.05);
+      }
     }
 
-    .difficulty-selector { 
-      display: flex; 
-      justify-content: center; 
-      gap: 10px; 
-      margin: 20px 0; 
+    .difficulty-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
     }
 
-    .difficulty-btn { 
-      padding: 10px 20px; 
-      border: none; 
-      border-radius: 25px; 
-      cursor: pointer; 
-      font-weight: bold; 
-      transition: all 0.3s ease; 
+    .difficulty-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -88,7 +94,7 @@
       left: 50%;
       width: 0;
       height: 0;
-      background: rgba(255,255,255,0.3);
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       transition: width 0.3s, height 0.3s;
@@ -99,14 +105,26 @@
       height: 100%;
     }
 
-    .difficulty-btn:hover, .difficulty-btn.active { 
-      transform: translateY(-3px); 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    .difficulty-btn:hover,
+    .difficulty-btn.active {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .easy { background: linear-gradient(45deg, var(--success-color), #20c997); color: white; }
-    .medium { background: linear-gradient(45deg, var(--secondary-color), #fd7e14); color: white; }
-    .hard { background: linear-gradient(45deg, var(--danger-color), #e74c3c); color: white; }
+    .easy {
+      background: linear-gradient(45deg, var(--success-color), #20c997);
+      color: white;
+    }
+
+    .medium {
+      background: linear-gradient(45deg, var(--secondary-color), #fd7e14);
+      color: white;
+    }
+
+    .hard {
+      background: linear-gradient(45deg, var(--danger-color), #e74c3c);
+      color: white;
+    }
 
     .stats-container {
       display: flex;
@@ -127,43 +145,43 @@
 
     .stat-item:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .character-level { 
-      text-align: center; 
-      margin-bottom: 10px; 
-      font-weight: bold; 
+    .character-level {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
       font-size: 1.2rem;
     }
 
-    .character { 
-      display: flex; 
-      justify-content: center; 
-      margin-bottom: 20px; 
+    .character {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
-    .character img { 
-      max-width: 150px; 
+    .character img {
+      max-width: 150px;
       transition: all 0.3s ease;
       border-radius: 50%;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .character img:hover {
       transform: scale(1.1) rotate(5deg);
     }
 
-    .game-area { 
-      text-align: center; 
+    .game-area {
+      text-align: center;
     }
 
-    .question-container { 
+    .question-container {
       background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-      padding: 25px; 
-      border-radius: 15px; 
-      margin-bottom: 20px; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       border: 2px solid transparent;
       transition: all 0.3s ease;
     }
@@ -173,26 +191,26 @@
       transform: translateY(-2px);
     }
 
-    .question { 
-      font-size: 1.5rem; 
-      margin-bottom: 20px; 
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
       font-weight: 600;
       color: var(--dark-color);
     }
 
-    .options { 
-      display: grid; 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 15px; 
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
 
-    .option-btn { 
-      padding: 15px; 
-      border: 2px solid var(--primary-color); 
-      border-radius: 10px; 
-      background: white; 
-      cursor: pointer; 
-      font-size: 1rem; 
+    .option-btn {
+      padding: 15px;
+      border: 2px solid var(--primary-color);
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      font-size: 1rem;
       font-weight: 600;
       transition: all 0.3s ease;
       position: relative;
@@ -206,7 +224,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       transition: left 0.5s;
     }
 
@@ -214,9 +232,9 @@
       left: 100%;
     }
 
-    .option-btn:hover { 
-      background: var(--primary-color); 
-      color: white; 
+    .option-btn:hover {
+      background: var(--primary-color);
+      color: white;
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
     }
@@ -235,20 +253,39 @@
     }
 
     @keyframes correctPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1.05); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1.05);
+      }
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
     }
 
-    .timer, .score-display { 
-      font-size: 1.2rem; 
-      margin-bottom: 20px; 
+    .timer,
+    .score-display {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
       font-weight: bold;
     }
 
@@ -258,24 +295,31 @@
     }
 
     @keyframes timerWarning {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
     }
 
-    .progress-container { 
-      width: 100%; 
-      height: 12px; 
-      background: #e0e0e0; 
-      border-radius: 10px; 
-      margin-bottom: 20px; 
+    .progress-container {
+      width: 100%;
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      margin-bottom: 20px;
       overflow: hidden;
       position: relative;
     }
 
-    .progress-bar { 
-      height: 100%; 
+    .progress-bar {
+      height: 100%;
       background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-      width: 0%; 
+      width: 0%;
       transition: width 0.3s ease;
       position: relative;
     }
@@ -287,54 +331,66 @@
       left: 0;
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       animation: progressShine 2s infinite;
     }
 
     @keyframes progressShine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
     }
 
-    .feedback { 
-      margin-top: 15px; 
-      padding: 15px; 
-      border-radius: 10px; 
-      font-weight: bold; 
+    .feedback {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
       display: none;
       animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .correct { 
-      background: linear-gradient(135deg, rgba(40,167,69,0.2), rgba(40,167,69,0.3)); 
-      color: var(--success-color); 
+    .correct {
+      background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(40, 167, 69, 0.3));
+      color: var(--success-color);
       border: 2px solid var(--success-color);
     }
 
-    .incorrect { 
-      background: linear-gradient(135deg, rgba(220,53,69,0.2), rgba(220,53,69,0.3)); 
-      color: var(--danger-color); 
+    .incorrect {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(220, 53, 69, 0.3));
+      color: var(--danger-color);
       border: 2px solid var(--danger-color);
     }
 
-    .controls { 
-      margin-top: 20px; 
-      display: flex; 
-      justify-content: center; 
-      gap: 15px; 
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
     }
 
-    .controls button { 
-      padding: 12px 25px; 
-      border: none; 
-      border-radius: 25px; 
-      font-weight: bold; 
-      cursor: pointer; 
+    .controls button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -347,7 +403,7 @@
       left: 50%;
       width: 0;
       height: 0;
-      background: rgba(255,255,255,0.3);
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       transition: width 0.3s, height 0.3s;
@@ -358,35 +414,35 @@
       height: 120%;
     }
 
-    .start-btn { 
-      background: linear-gradient(45deg, var(--primary-color), #5a7cb8); 
+    .start-btn {
+      background: linear-gradient(45deg, var(--primary-color), #5a7cb8);
       color: white;
     }
 
-    .next-btn { 
-      background: linear-gradient(45deg, var(--secondary-color), #ff7f3f); 
-      color: white; 
+    .next-btn {
+      background: linear-gradient(45deg, var(--secondary-color), #ff7f3f);
+      color: white;
       display: none;
     }
 
-    .power-ups { 
-      display: flex; 
-      justify-content: center; 
-      gap: 15px; 
+    .power-ups {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
       margin-top: 20px;
       flex-wrap: wrap;
     }
 
-    .power-up { 
-      padding: 10px 15px; 
-      background: linear-gradient(45deg, var(--accent-color), #ff6b3d); 
-      color: white; 
-      border-radius: 20px; 
-      cursor: pointer; 
-      font-weight: bold; 
-      font-size: 0.9rem; 
-      display: flex; 
-      align-items: center; 
+    .power-up {
+      padding: 10px 15px;
+      background: linear-gradient(45deg, var(--accent-color), #ff6b3d);
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
       gap: 5px;
       transition: all 0.3s ease;
       border: 2px solid transparent;
@@ -395,7 +451,7 @@
     .power-up:hover {
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
-      border-color: rgba(255,255,255,0.3);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .power-up.disabled {
@@ -404,8 +460,8 @@
       transform: none;
     }
 
-    .xp-container { 
-      margin: 20px 0; 
+    .xp-container {
+      margin: 20px 0;
     }
 
     .streak-display {
@@ -420,8 +476,13 @@
     }
 
     @keyframes streakGlow {
-      0% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
-      100% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.8); }
+      0% {
+        box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+      }
+
+      100% {
+        box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+      }
     }
 
     .achievements {
@@ -438,7 +499,7 @@
       gap: 10px;
       margin: 5px 0;
       padding: 8px;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 5px;
       transition: all 0.3s ease;
     }
@@ -453,9 +514,19 @@
     }
 
     @keyframes achievementPop {
-      0% { transform: scale(0.8); opacity: 0; }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .combo-display {
@@ -466,55 +537,66 @@
       font-size: 3rem;
       font-weight: bold;
       color: var(--warning-color);
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       animation: comboAnimation 1s ease-out;
       pointer-events: none;
       z-index: 1000;
     }
 
     @keyframes comboAnimation {
-      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-    }
-
-    footer { 
-      text-align: center; 
-      margin-top: 30px; 
-      padding-top: 20px; 
-      border-top: 1px solid #ddd; 
-      font-size: 0.9rem; 
-      color: #666; 
-    }
-
-    @media (max-width: 600px) { 
-      .options { 
-        grid-template-columns: 1fr; 
-      } 
-      
-      h1 { 
-        font-size: 2rem; 
-      } 
-      
-      .question { 
-        font-size: 1.2rem; 
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
       }
-      
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .question {
+        font-size: 1.2rem;
+      }
+
       .power-ups {
         flex-direction: column;
         align-items: center;
       }
-      
+
       .power-up {
         width: 80%;
         justify-content: center;
       }
-      
+
       .stats-container {
         flex-direction: column;
         align-items: center;
       }
-      
+
       .stat-item {
         width: 80%;
       }
@@ -534,22 +616,36 @@
       position: absolute;
       width: 4px;
       height: 4px;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255, 255, 255, 0.6);
       border-radius: 50%;
       animation: float 6s infinite linear;
     }
 
     @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="particles" id="particles"></div>
-  
+
   <div class="container">
     <header>
       <h1>🎯 Math Quest</h1>
@@ -558,7 +654,8 @@
 
     <div class="difficulty-selector">
       <button id="btn-easy" class="difficulty-btn easy" onclick="game.setDifficulty('easy')">🟢 Fácil</button>
-      <button id="btn-medium" class="difficulty-btn medium active" onclick="game.setDifficulty('medium')">🟡 Médio</button>
+      <button id="btn-medium" class="difficulty-btn medium active" onclick="game.setDifficulty('medium')">🟡
+        Médio</button>
       <button id="btn-hard" class="difficulty-btn hard" onclick="game.setDifficulty('hard')">🔴 Difícil</button>
     </div>
 
@@ -595,32 +692,33 @@
         <div class="progress-container">
           <div id="progress-bar" class="progress-bar"></div>
         </div>
-        
+
         <div class="score-display">
-          Pontuação: <span id="score">0</span> | 
+          Pontuação: <span id="score">0</span> |
           Pergunta: <span id="question-number">0</span>/10
         </div>
-        
+
         <div class="streak-display" id="streak-display" style="display:none;">
           🔥 Sequência: <span id="current-streak">0</span>
         </div>
-        
+
         <div class="timer">
           ⏱️ Tempo: <span id="time">30</span>s
         </div>
-        
+
         <div class="xp-container">
           XP: <div class="progress-container">
-            <div id="xp-bar" class="progress-bar" style="background: linear-gradient(90deg, var(--success-color), #20c997)"></div>
+            <div id="xp-bar" class="progress-bar"
+              style="background: linear-gradient(90deg, var(--success-color), #20c997)"></div>
           </div>
         </div>
-        
+
         <div class="question-container">
           <div id="question" class="question"></div>
           <div id="options" class="options"></div>
           <div id="feedback" class="feedback"></div>
         </div>
-        
+
         <div class="power-ups">
           <div class="power-up" onclick="game.usePowerUp('time')">
             ⏱️ +10s (<span id="time-count">3</span>)
@@ -664,35 +762,36 @@
         this.bestStreak = 0;
         this.powerUps = { time: 3, hint: 3, skip: 3 };
         this.audioContext = null;
-        
+        this.askedQuestionIndices = {}; // Para armazenar os índices dos templates de perguntas já usados por dificuldade
+
         this.achievements = {
-          firstWin: { 
-            name: "🎯 Primeira Vitória", 
+          firstWin: {
+            name: "🎯 Primeira Vitória",
             description: "Responda sua primeira pergunta corretamente",
             unlocked: false
           },
-          speedster: { 
-            name: "⚡ Velocista", 
+          speedster: {
+            name: "⚡ Velocista",
             description: "Responda em menos de 5 segundos",
             unlocked: false
           },
-          perfectRound: { 
-            name: "💯 Rodada Perfeita", 
+          perfectRound: {
+            name: "💯 Rodada Perfeita",
             description: "Acerte todas as 10 perguntas",
             unlocked: false
           },
-          streakMaster: { 
-            name: "🔥 Mestre das Sequências", 
+          streakMaster: {
+            name: "🔥 Mestre das Sequências",
             description: "Consiga uma sequência de 5 acertos",
             unlocked: false
           },
-          levelUp: { 
-            name: "📈 Evoluindo", 
+          levelUp: {
+            name: "📈 Evoluindo",
             description: "Alcance o nível 5",
             unlocked: false
           },
-          powerUser: { 
-            name: "🔋 Usuário Experiente", 
+          powerUser: {
+            name: "🔋 Usuário Experiente",
             description: "Use todos os power-ups em uma partida",
             unlocked: false
           }
@@ -709,41 +808,58 @@
           ],
           medium: [
             { template: "Quanto é {a} × {b}?", answer: (a, b) => a * b },
-            { template: "Quanto é {a} ÷ {b}?", answer: (a, b) => a / b, param: () => {
-              const b = Math.floor(Math.random() * 5) + 2;
-              const a = b * (Math.floor(Math.random() * 10) + 1);
-              return { a, b };
-            }},
+            {
+              template: "Quanto é {a} ÷ {b}?", answer: (a, b) => a / b, param: () => {
+                const b = Math.floor(Math.random() * 5) + 2;
+                const a = b * (Math.floor(Math.random() * 10) + 1);
+                return { a, b };
+              }
+            },
             { template: "Qual é {a}% de {b}?", answer: (a, b) => (a * b) / 100, param: () => ({ a: Math.floor(Math.random() * 9 + 1) * 10, b: Math.floor(Math.random() * 90) + 10 }) },
-            { template: "Qual é a raiz quadrada de {a_squared}?", answer: (a) => a, param: () => {
-              const a = Math.floor(Math.random() * 10) + 1;
-              return { a_squared: a * a, a };
-            }},
-            { template: "Se {a} laranjas custam R$ {b}, quanto custam {c} laranjas?", answer: (a, b, c) => (b * c) / a, param: () => {
-              const a = Math.floor(Math.random() * 5) + 2;
-              const b = Math.floor(Math.random() * 20) + 5;
-              const c = Math.floor(Math.random() * 10) + 1;
-              return { a, b, c };
-            }},
+            {
+              template: "Qual é a raiz quadrada de {a_squared}?", answer: (a) => a, param: () => {
+                const a = Math.floor(Math.random() * 10) + 1;
+                return { a_squared: a * a, a };
+              }
+            },
+            {
+              template: "Se {a} laranjas custam R$ {b}, quanto custam {c} laranjas?", answer: (a, b, c) => (b * c) / a, param: () => {
+                const a = Math.floor(Math.random() * 5) + 2;
+                const b = Math.floor(Math.random() * 20) + 5;
+                const c = Math.floor(Math.random() * 10) + 1;
+                return { a, b, c };
+              }
+            },
             { template: "Qual é o dobro de {a}?", answer: (a) => a * 2 }
           ],
           hard: [
-            { template: "Qual é o fatorial de {a}?", answer: (a) => {
-              let result = 1;
-              for (let i = 2; i <= a; i++) result *= i;
-              return result;
-            }, param: () => ({ a: Math.floor(Math.random() * 4) + 3 }) },
+            {
+              template: "Qual é o fatorial de {a}?", answer: (a) => {
+                let result = 1;
+                for (let i = 2; i <= a; i++) result *= i;
+                return result;
+              }, param: () => ({ a: Math.floor(Math.random() * 4) + 3 })
+            },
             { template: "Quanto é {a}³?", answer: (a) => a * a * a },
             { template: "Qual é a média aritmética de {a}, {b} e {c}?", answer: (a, b, c) => (a + b + c) / 3, param: () => ({ a: Math.floor(Math.random() * 20) + 1, b: Math.floor(Math.random() * 20) + 1, c: Math.floor(Math.random() * 20) + 1 }) },
-            { template: "Se 2^{a} = {result}, qual é o valor de {a}?", answer: (a) => a, param: () => {
-              const a = Math.floor(Math.random() * 6) + 1;
-              return { a, result: Math.pow(2, a) };
-            }},
-            { template: "Qual é o próximo número na sequência: {a}, {b}, {c}, ?", answer: (a, b, c) => c + (c - b), param: () => {
-              const diff = Math.floor(Math.random() * 5) + 2;
-              const a = Math.floor(Math.random() * 10) + 1;
-              return { a, b: a + diff, c: a + 2 * diff };
-            }},
+            {
+              template: "Se 2^a = {result}, qual é o valor de a?", // 'a' agora é um caractere literal
+              answer: (result_val, exponent_val) => exponent_val, // A resposta é o valor do expoente
+              param: () => {
+                const a_value = Math.floor(Math.random() * 6) + 1;
+                const result_value = Math.pow(2, a_value);
+                // 'exponent_answer' é o valor real do expoente, não usado no template da pergunta
+                return { result: result_value, exponent_answer: a_value };
+              }
+            },
+
+            {
+              template: "Qual é o próximo número na sequência: {a}, {b}, {c}, ?", answer: (a, b, c) => c + (c - b), param: () => {
+                const diff = Math.floor(Math.random() * 5) + 2;
+                const a = Math.floor(Math.random() * 10) + 1;
+                return { a, b: a + diff, c: a + 2 * diff };
+              }
+            },
             { template: "Qual é a área de um quadrado com lado {a}?", answer: (a) => a * a }
           ]
         };
@@ -780,13 +896,13 @@
 
       playSound(type) {
         if (!this.audioContext) return;
-        
+
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-        
+
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-        
+
         const frequencies = {
           correct: 800,
           incorrect: 200,
@@ -794,26 +910,27 @@
           powerUp: 600,
           achievement: 900
         };
-        
+
         oscillator.frequency.value = frequencies[type] || 400;
         gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
-        
+
         oscillator.start();
         oscillator.stop(this.audioContext.currentTime + 0.3);
       }
 
       setDifficulty(levelSel) {
+        // Troca a imagem do personagem conforme a dificuldade escolhida
         this.difficulty = levelSel;
         document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(`btn-${levelSel}`).classList.add('active');
-        
+
+        // IMAGEM DO PERSONAGEM POR DIFICULDADE
         const images = {
           easy: 'https://placehold.co/150?text=🧒',
           medium: 'https://placehold.co/150?text=🧑‍🏫',
           hard: 'https://placehold.co/150?text=🧠'
         };
-        
         document.getElementById('character-img').src = images[levelSel];
       }
 
@@ -831,7 +948,8 @@
         this.currentStreak = 0;
         this.powerUps = { time: 3, hint: 3, skip: 3 };
         this.gameStarted = true;
-        
+        this.askedQuestionIndices[this.difficulty] = []; // Resetar perguntas feitas para a dificuldade atual
+
         this.updateStats();
         this.updateCounters();
         this.updateHighScore();
@@ -844,18 +962,32 @@
         if (this.currentQuestion > this.totalQuestions) {
           return this.endGame();
         }
-        
+
         document.getElementById('question-number').textContent = this.currentQuestion;
         document.getElementById('progress-bar').style.width = `${(this.currentQuestion / this.totalQuestions) * 100}%`;
 
         const templates = this.questionTemplates[this.difficulty];
-        const template = templates[Math.floor(Math.random() * templates.length)];
-        
+        let availableTemplatesIndices = templates
+          .map((_, index) => index)
+          .filter(index => !this.askedQuestionIndices[this.difficulty].includes(index));
+
+        // Se todos os templates para esta dificuldade foram usados, resetar a lista
+        if (availableTemplatesIndices.length === 0) {
+          this.askedQuestionIndices[this.difficulty] = [];
+          availableTemplatesIndices = templates.map((_, index) => index);
+        }
+
+        const randomIndex = availableTemplatesIndices[Math.floor(Math.random() * availableTemplatesIndices.length)];
+        const template = templates[randomIndex];
+
+        // Adicionar o índice original do template escolhido à lista de perguntas feitas
+        this.askedQuestionIndices[this.difficulty].push(randomIndex);
+
         let params = {
           a: Math.floor(Math.random() * 10) + 1,
           b: Math.floor(Math.random() * 10) + 1
         };
-        
+
         if (template.param) {
           params = { ...params, ...template.param() };
         }
@@ -870,7 +1002,7 @@
 
         const optionsEl = document.getElementById('options');
         optionsEl.innerHTML = '';
-        
+
         let options = [this.correctAnswer];
         while (options.length < 4) {
           let wrongAnswer = this.correctAnswer + Math.floor(Math.random() * 10 + 1) * (Math.random() > 0.5 ? 1 : -1);
@@ -897,7 +1029,7 @@
         clearInterval(this.timer);
         const feedback = document.getElementById('feedback');
         const isCorrect = parseFloat(answer) === parseFloat(this.correctAnswer);
-        
+
         // Destacar resposta correta/incorreta
         document.querySelectorAll('.option-btn').forEach(btn => {
           btn.onclick = null;
@@ -912,31 +1044,31 @@
           this.playSound('correct');
           this.currentStreak++;
           this.bestStreak = Math.max(this.bestStreak, this.currentStreak);
-          
+
           feedback.className = 'feedback correct';
           feedback.textContent = '✅ Correto!';
-          
+
           const basePoints = this.difficulty === 'easy' ? 10 : this.difficulty === 'medium' ? 20 : 30;
           const timeBonus = Math.floor(this.timeLeft / 3);
           const streakBonus = this.currentStreak > 1 ? this.currentStreak * 5 : 0;
           const points = basePoints + timeBonus + streakBonus;
-          
+
           this.score += points;
           this.xp += points;
-          
+
           // Mostrar combo se streak > 2
           if (this.currentStreak > 2) {
             this.showCombo();
           }
-          
+
           // Verificar level up
           if (this.xp >= this.xpToNextLevel) {
             this.levelUp();
           }
-          
+
           // Verificar conquistas
           this.checkAchievements(isCorrect);
-          
+
         } else {
           this.playSound('incorrect');
           this.currentStreak = 0;
@@ -955,14 +1087,14 @@
         this.xp -= this.xpToNextLevel;
         this.xpToNextLevel += 50;
         this.playSound('levelUp');
-        
+
         // Efeito visual de level up
         const levelEl = document.getElementById('level');
         levelEl.style.animation = 'correctPulse 0.6s ease';
         setTimeout(() => {
           levelEl.style.animation = '';
         }, 600);
-        
+
         // Restaurar um power-up aleatório
         const powerUpTypes = ['time', 'hint', 'skip'];
         const randomPowerUp = powerUpTypes[Math.floor(Math.random() * powerUpTypes.length)];
@@ -975,7 +1107,7 @@
         comboEl.className = 'combo-display';
         comboEl.textContent = `🔥 ${this.currentStreak}x COMBO!`;
         document.querySelector('.container').appendChild(comboEl);
-        
+
         setTimeout(() => {
           comboEl.remove();
         }, 1000);
@@ -991,15 +1123,15 @@
         clearInterval(this.timer);
         const timerEl = document.getElementById('time');
         timerEl.parentElement.classList.remove('warning');
-        
+
         this.timer = setInterval(() => {
           this.timeLeft--;
           timerEl.textContent = this.timeLeft;
-          
+
           if (this.timeLeft <= 10) {
             timerEl.parentElement.classList.add('warning');
           }
-          
+
           if (this.timeLeft <= 0) {
             clearInterval(this.timer);
             this.currentStreak = 0;
@@ -1024,7 +1156,7 @@
       updateStreakDisplay() {
         const streakDisplay = document.getElementById('streak-display');
         const currentStreakEl = document.getElementById('current-streak');
-        
+
         if (this.currentStreak > 0) {
           streakDisplay.style.display = 'inline-block';
           currentStreakEl.textContent = this.currentStreak;
@@ -1036,12 +1168,12 @@
       endGame() {
         clearInterval(this.timer);
         this.gameStarted = false;
-        
+
         // Verificar conquista de rodada perfeita
         if (this.currentStreak === this.totalQuestions) {
           this.unlockAchievement('perfectRound');
         }
-        
+
         const feedback = document.getElementById('feedback');
         feedback.className = 'feedback';
         feedback.innerHTML = `
@@ -1051,13 +1183,13 @@
           <p>Melhor sequência: <strong>${this.bestStreak}</strong></p>
         `;
         feedback.style.display = 'block';
-        
+
         document.getElementById('question').textContent = 'Parabéns! Você completou o Math Quest!';
         document.getElementById('options').innerHTML = '';
         document.getElementById('next-btn').style.display = 'none';
         document.getElementById('start-btn').textContent = '🔄 Jogar Novamente';
         document.getElementById('start-btn').style.display = 'inline-block';
-        
+
         this.saveHighScore();
         this.saveAchievements();
       }
@@ -1066,24 +1198,24 @@
         if (this.powerUps[type] <= 0) {
           return alert('❌ Sem usos restantes!');
         }
-        
+
         this.powerUps[type]--;
         this.updateCounters();
         this.playSound('powerUp');
-        
+
         // Verificar se usou todos os power-ups
         if (this.powerUps.time === 2 && this.powerUps.hint === 2 && this.powerUps.skip === 2) {
           this.unlockAchievement('powerUser');
         }
-        
+
         if (type === 'time') {
           this.timeLeft += 10;
           document.getElementById('time').textContent = this.timeLeft;
-          
+
         } else if (type === 'hint') {
           const buttons = document.querySelectorAll('.option-btn');
           let wrongAnswers = 0;
-          
+
           buttons.forEach(btn => {
             if (parseFloat(btn.textContent) !== parseFloat(this.correctAnswer) && wrongAnswers < 2) {
               btn.style.opacity = '0.3';
@@ -1091,7 +1223,7 @@
               wrongAnswers++;
             }
           });
-          
+
         } else if (type === 'skip') {
           clearInterval(this.timer);
           const feedback = document.getElementById('feedback');
@@ -1108,12 +1240,12 @@
         document.getElementById('time-count').textContent = this.powerUps.time;
         document.getElementById('hint-count').textContent = this.powerUps.hint;
         document.getElementById('skip-count').textContent = this.powerUps.skip;
-        
+
         // Atualizar visual dos power-ups
         document.querySelectorAll('.power-up').forEach((powerUp, index) => {
           const types = ['time', 'hint', 'skip'];
           const type = types[index];
-          
+
           if (this.powerUps[type] <= 0) {
             powerUp.classList.add('disabled');
           } else {
@@ -1133,17 +1265,17 @@
         if (isCorrect && !this.achievements.firstWin.unlocked) {
           this.unlockAchievement('firstWin');
         }
-        
+
         // Velocista (resposta em menos de 5 segundos)
         if (isCorrect && this.timeLeft > 25 && !this.achievements.speedster.unlocked) {
           this.unlockAchievement('speedster');
         }
-        
+
         // Mestre das sequências
         if (this.currentStreak >= 5 && !this.achievements.streakMaster.unlocked) {
           this.unlockAchievement('streakMaster');
         }
-        
+
         // Evoluindo
         if (this.level >= 5 && !this.achievements.levelUp.unlocked) {
           this.unlockAchievement('levelUp');
@@ -1152,10 +1284,10 @@
 
       unlockAchievement(achievementKey) {
         if (this.achievements[achievementKey].unlocked) return;
-        
+
         this.achievements[achievementKey].unlocked = true;
         this.playSound('achievement');
-        
+
         // Mostrar notificação
         const notification = document.createElement('div');
         notification.innerHTML = `
@@ -1165,20 +1297,20 @@
             <p>${this.achievements[achievementKey].description}</p>
           </div>
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
           notification.remove();
         }, 4000);
-        
+
         this.displayAchievements();
       }
 
       displayAchievements() {
         const achievementsList = document.getElementById('achievements-list');
         achievementsList.innerHTML = '';
-        
+
         Object.keys(this.achievements).forEach(key => {
           const achievement = this.achievements[key];
           const div = document.createElement('div');
@@ -1250,4 +1382,5 @@
     document.head.appendChild(style);
   </script>
 </body>
+
 </html>
